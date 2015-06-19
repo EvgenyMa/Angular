@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app>
+	<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<script src ="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script src ="app/controller/controllers.js"></script>
+		
+	</head>
+	<body ng-controller = "personListCtrl">
+	<div class = "container">
+	<legend><h1>Lesson 1.Homework</h1></legend>
+	<legend><input type = "button" ng-click = "show = !show" value = "Show/Hide table"></legend>
+
+	
+	<legend><div class="input-group input-group-sm"> <input ng-model="query" class="form-control" type="text" placeholder="Input for search"></div><br></legend>
+
+		<table class="table table-bordered" border="0" ng-show = "show">
+			<tr>
+				<th><a href="" ng-click = "sortField = 'firstName'; reverse = !reverse">First Name</a></th>
+				<th><a href="" ng-click = "sortField = 'lastName'; reverse = !reverse">Last Name</a></th>
+				<th><a href="" ng-click = "sortField = 'age'; reverse =!reverse">Age</a></th>
+				<th><a href="" ng-click = "sortField = 'address.city';reverse= !reverse">City</a></th>
+				<th>
+					<select ng-model = "selectedPhone">
+					<option selected value="home">Phone Number</option>
+					<option value="fax">Fax Number</option>
+					</select>
+				</th>
+				<th>Actions</th>
+			</tr>
+			<tr ng-repeat="person in persons | filter:query | orderBy:sortField:reverse">
+				<td>{{person.firstName}}</td>
+				<td>{{person.lastName}}</td>
+				<td>{{person.age}}</td>
+				<td>{{person.address.city}}</td>
+				<td>{{(person.phoneNumber | filter : {type: selectedPhone})[0].number }}</td>
+				<td>
+					<button type="button" class="btn btn-default btn-sm">
+					<span class="glyphicon glyphicon-pencil"></span>
+					</button>
+				</td>
+			</tr>
+		</table>
+		</div>
+
+	</body>
+</html>
