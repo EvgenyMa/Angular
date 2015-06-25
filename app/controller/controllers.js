@@ -1,4 +1,6 @@
-function personListCtrl($scope){
+var personList = angular.module('personList', [])
+
+	.controller('personListCtrl',function($scope){
 	$scope.persons = [
 {
 	"firstName": "John",
@@ -72,7 +74,12 @@ function personListCtrl($scope){
 ]
 	$scope.sortField = 'firstName';
 
-};
+})
+
+
+
+
+
 //Phone/Fax number sort
 scope.selectedPhone = 'home';
 scope.phoneNumberQuery = "";

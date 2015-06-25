@@ -1,14 +1,24 @@
 <!doctype html>
-<html ng-app>
+<html ng-app = "personList">
 	<head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!--===========================================================================-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
+<!--===========================================================================-->
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
 
 		<script src ="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 		<script src ="app/controller/controllers.js"></script>
 		
@@ -42,12 +52,40 @@
 				<td>{{person.address.city}}</td>
 				<td>{{(person.phoneNumber | filter : {type: selectedPhone})[0].number }}</td>
 				<td>
-					<button type="button" class="btn btn-default btn-sm">
+					<button type="button" idx="{{$index}}" href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">
 					<span class="glyphicon glyphicon-pencil"></span>
 					</button>
 				</td>
+
 			</tr>
 		</table>
+		    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                   <table>
+				   <tr>
+						<td>
+							Hi!{{person[idx].firstName}}
+						</td>
+				   </tr>
+				   </table>
+                    <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 		</div>
 
 	</body>
